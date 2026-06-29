@@ -1,7 +1,4 @@
 from pydantic import BaseModel
 
-class SearchResult(BaseModel):
-    provider: str
+class SearchRequest(BaseModel):
     username: str
-    exists: bool
-    url: str | None = None

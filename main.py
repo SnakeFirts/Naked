@@ -1,15 +1,17 @@
 import asyncio
 
 from naked.core.engine import NakedEngine
-from naked.core.registry import Registry
-
-from naked.providers.dummy.provider import DummyProvider
+from naked.core.plugin_manager import PluginManager
 
 async def main():
-    registry = Registry()
-    registry.register(DummyProvider())
-    engine = NakedEngine(registry)
+    manager = PluginManager()
+    providers = manager.load()
+    engine = NakedEngine(providers)
+    
     results = await engine.search("snakefirts")
-    print(results)
 
-asyncio.run(main())
+    for result in results:
+        print(result.model_dump())
+        
+if __name__ == "__main__":
+    asyncio.run(main())

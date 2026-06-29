@@ -1,11 +1,11 @@
 from abc import ABC, abstractmethod
-from typing import Any
+
+from naked.models.search_result import SearchResult
 
 class Provider(ABC):
-    """Clase base para todos los proveedores."""
-
     name: str = "provider"
+    enabled: bool = True
+
     @abstractmethod
-    async def search(self, username: str) -> Any:
-        """Busca un usuario y devuelve el resultado."""
-        raise NotImplementedError
+    async def search(self, username: str) -> SearchResult:
+        pass
