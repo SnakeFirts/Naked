@@ -3,6 +3,7 @@ from typing import Any
 from pydantic import BaseModel
 
 from naked.models.profiles.base import BaseProfile
+from naked.models.intelligence_score import IntelligenceScore
 
 
 class SearchResult(BaseModel):
@@ -18,3 +19,5 @@ class SearchResult(BaseModel):
     profile: BaseProfile | None = None
 
     raw: dict[str, Any] | None = None
+
+    score: IntelligenceScore | None = None
